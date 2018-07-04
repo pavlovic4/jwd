@@ -1,0 +1,121 @@
+<div ng-controller="automobiliCtrl">
+	<div class="page-header">
+		<h1>Automobili</h1>
+	</div>
+	<br />
+	<div class="row">
+		<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
+			<h3>Pretraga automobila</h3>
+			<hr />
+			<form>
+				<div class="form-group">
+					<label for="modelp">Model:</label> <input class="form-control"
+						id="modelp" ng-model="search.model">
+				</div>
+				<div class="form-group">
+					<label for="minGod">Godiste od:</label> <input class="form-control"
+						id="minGod" ng-model="search.minGod">
+				</div>
+				<div class="form-group">
+					<label for="maxPot">Potrosnja do:</label> <input
+						class="form-control" id="maxPot" ng-model="search.maxPot">
+				</div>
+				<div class="btn-group pull-left">
+					<button class="btn btn-primary" ng-click="search2()">
+						<span class="glyphicon glyphicon-search"></span>
+					</button>
+					<button class="btn btn-primary" ng-click="search2()">
+						<span class="glyphicon glyphicon-remove" ng-click="empty()"></span>
+					</button>
+				</div>
+			</form>
+		</div>
+
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			<h3>Prikaz automobila</h3>
+			<hr />
+			<div class="btn-group pull-right">
+				<button ng-disabled="pageNum == 0" ng-click="go(-1)"
+					class="btn btn-primary">
+					<span class="glyphicon glyphicon-arrow-left"></span>
+				</button>
+				<button ng-disabled="pageNum == totalPages - 1" ng-click="go(1)"
+					class="btn btn-primary">
+					<span class="glyphicon glyphicon-arrow-right"></span>
+				</button>
+			</div>
+			<table class="table table-striped table-bordered table-hover">
+				<thead>
+					<tr>
+						<th>Model</th>
+						<th>Registracija</th>
+						<th>Godiste</th>
+						<th>Potrosnja</th>
+						<th>Kompanija</th>
+						<th>Iznajmljen</th>
+						<th>&nbsp;</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="a in automobili">
+						<td>{{a.model}}</td>
+						<td>{{a.registracija}}</td>
+						<td>{{a.godiste}}</td>
+						<td>{{a.potrosnja}}</td>
+						<td>{{a.kompanijaNaziv}}</td>
+						<td>{{a.iznajmljenTekst}}</td>
+						<td>
+							<button class="btn btn-warning" ng-click="goToEdit(a.id)">
+								<span class="glyphicon glyphicon-edit"></span>
+							</button>
+							<button ng-disabled="a.iznajmljen" class="btn btn-danger"
+								ng-click="deleteAutomobil(a.id)">
+								<span class="glyphicon glyphicon-trash"></span>
+							</button>
+							<button class="btn btn-info"
+								ng-click="goToInfo(a.kompanijaId)">
+								<span class="glyphicon glyphicon-info-sign"></span>
+							</button>
+							<button ng-disabled="a.iznajmljen" class="btn btn-success"
+								ng-click="iznajmi(a.id)">Iznajmi</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
+			<h3>Dodavanje automobila</h3>
+			<hr />
+			<form>
+				<div class="form-group">
+					<label for="model">Model</label> <input class="form-control"
+						id="model" ng-model="noviAutomobil.model">
+				</div>
+				<div class="form-group">
+					<label for="registracija">Registracija</label> <input
+						class="form-control" id="registracija"
+						ng-model="noviAutomobil.registracija">
+				</div>
+				<div class="form-group">
+					<label for="godiste">Godiste</label> <input class="form-control"
+						id="godiste" ng-model="noviAutomobil.godiste">
+				</div>
+				<div class="form-group">
+					<label for="potrosnja">Potrosnja</label> <input
+						class="form-control" id="potrosnja"
+						ng-model="noviAutomobil.potrosnja">
+				</div>
+				<div class="form-group">
+					<label for="kompanija">Kompanija</label> <select
+						class="form-control" id="kompanija"
+						ng-model="noviAutomobil.kompanijaId">
+						<option ng-repeat="k in kompanije" value="{{k.id}}">{{k.naziv}}</option>
+					</select>
+				</div>
+				<button class="btn btn-primary" ng-click="add()">
+					<span class="glyphicon glyphicon-plus"></span>
+				</button>
+			</form>
+		</div>
+	</div>
+</div>

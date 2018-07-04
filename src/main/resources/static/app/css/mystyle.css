@@ -1,0 +1,20 @@
+.table-striped > tbody > tr:nth-of-type(odd) {
+  background-color: #e6faff;
+}
+
+.table-hover > tbody > tr:hover {
+  background-color: #ccf5ff;
+}
+
+.page-header {
+  padding-bottom: 9px;
+  margin: 40px 0 20px;
+  border-bottom: 3px solid #0094b9;
+}
+
+.jumbotron {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin-bottom: 30px;
+  background-color: #b3f0ff;
+}
